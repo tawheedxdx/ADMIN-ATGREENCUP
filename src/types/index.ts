@@ -257,7 +257,7 @@ export interface SalarySlip {
   earningIds?: string[]
   status: 'active' | 'deleted' | 'PAID' | 'paid' | 'UNPAID' | 'unpaid'
   paymentStatus?: SlipPaymentStatus
-  createdAt: string
+  createdAt?: string
   paidAt?: string
   paidBy?: string
   paidByName?: string
