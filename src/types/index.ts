@@ -200,32 +200,67 @@ export interface Earning {
   unit?: string
   productionDate?: string
   calculatedAmount: number
+  rateAmount?: number
+  ratePerQuantity?: number
+  currency?: string
+  periodType?: SalaryPeriod
+  periodKey?: string
   appliedRuleId?: string
   paymentStatus: PaymentStatus
   paidAt?: string
   paidBy?: string
+  paymentNote?: string
   createdAt: string
   updatedAt?: string
 }
 
+export type SlipPaymentStatus = 'pending' | 'paid' | 'rejected'
+
+export interface SalarySlipItem {
+  machineNo: string
+  productId: string
+  productName: string
+  box: number
+  totalPackets: number
+  pcs: number
+  rate: string
+  amount: number
+  productionEntryIds?: string[]
+}
+
 export interface SalarySlip {
   id: string
-  operatorId: string
+  slipNumber?: string
+  operatorId?: string
+  operatorUid?: string
   operatorName: string
   employeeId?: string
-  startDate: string
-  endDate: string
+  startDate?: string
+  endDate?: string
   fromDate?: string
   toDate?: string
-  totalEntries: number
-  totalBoxes: number
-  totalWaste: number
-  grossAmount: number
+  generatedBy?: string
+  generatedByName?: string
+  generatedAt?: string
+  totalEntries?: number
+  totalBoxes?: number
+  totalPackets?: number
+  totalPCS?: number
+  totalWaste?: number
+  grossAmount?: number
   deductions?: number
-  netPayable: number
+  netPayable?: number
   roundOff?: number
   finalAmount?: number
-  status: 'UNPAID' | 'PAID' | 'paid' | 'unpaid'
+  items?: SalarySlipItem[]
+  productionEntryIds?: string[]
+  earningIds?: string[]
+  status: 'active' | 'deleted' | 'PAID' | 'paid' | 'UNPAID' | 'unpaid'
+  paymentStatus?: SlipPaymentStatus
   createdAt: string
   paidAt?: string
+  paidBy?: string
+  paidByName?: string
+  isEdited?: boolean
+  pdfUrl?: string
 }
